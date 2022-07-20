@@ -1,4 +1,4 @@
 .idea
 __*
-data
+flask-server/data
 *.json
