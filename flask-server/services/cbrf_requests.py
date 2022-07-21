@@ -16,22 +16,3 @@ def get_usd_rate_from_central_bank(date: str | None) -> float:
     usd_rate = float(usd_data['Value'].replace(',', '.'))
     return usd_rate
 
-
-# def get_usd_rate_from_central_bank_by_date() -> float:
-#     pass
-
-# print(get_usd_rate_from_central_bank())
-
-# print(usd_rate)
-
-
-# import json
-# # for currency in tree.iter('Item'):
-#
-# print(json.dumps(tree))
-#
-# with open('cb.xml', 'w') as file:
-#     file.write(response.text)
-
-# with open('cb.xml', encoding='utf-8') as file:
-#     tree_raw = xmltodict.parse(file.read())

@@ -20,7 +20,7 @@ class Deliveries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     d_id = db.Column(db.Integer)
     order_num = db.Column(db.String(50))
-    date = db.Column(db.String(10))
+    date = db.Column(db.Date)
     usd_price = db.Column(db.Float)
     rub_price = db.Column(db.Float)
 
@@ -43,9 +43,7 @@ deliveries_schema = DeliverySchema(many=True)
 
 @app.route("/api/get-statistics")
 def get_statistics():
-
-    with open('test.json', encoding='utf-8') as file:
-        google_sheets_data = json.load(file)
+    google_sheets_data = get_data()
 
     manipulate_data(
         session=db.session,

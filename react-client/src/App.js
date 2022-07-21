@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+import TableList from "./components/Table";
+import Chart from "./components/Chart";
+import { Spinner } from 'react-spinner-animated';
+
+import 'react-spinner-animated/dist/index.css'
 
 function App() {
 
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("/api/get-statistics")
@@ -11,27 +16,13 @@ function App() {
   }, [])
   return (
     <div>
-      <tr>
-        {( typeof data === "undefined" ) ? (
-        <p>Loading...</p>
-      ): (
-        (Object.keys(data)).map((value, i) => (
-          <th key={i}>{value}</th>
-        ) && (
-          (Object.values(data)).map((value, i) => ( <th key={i}>{value}</th> 
-          ))
-        ))
-
-        )}
-      </tr>
-      {/* {( typeof data['заказ №']=== "undefined" ) ? (
-        <p>Loading...</p>
-      ): (
-
-        data['заказ №'].map((value, i) => (
-          <p key={i}>{value}</p>
-        ))
-      )} */}
+      {!data.length ? (
+        <Spinner/>
+      ) : (      
+      <div  style={{ display: 'grid' }}>
+        <Chart data = {data} />
+        <TableList data = {data} />
+      </div>)}
     </div>
   )
 };

@@ -1,6 +1,3 @@
-# from pprint import pprint
-# import json
-
 import httplib2
 import apiclient
 from oauth2client.service_account import ServiceAccountCredentials
@@ -18,11 +15,8 @@ def get_data_from_gsheets() -> list:
     sheets_data = service.spreadsheets().values().get(
         spreadsheetId=SPREADSHEETS_ID,
         range='A1:E',
-        # majorDimension='COLUMNS'
         majorDimension='ROWS'
     ).execute()
     return sheets_data["values"]
-    # return {key[0]: key[1:] for key in sheets_data["values"]}
 
 
-# pprint(get_data_from_gsheets())
