@@ -19,8 +19,9 @@ __Nota bene:__ <br>
 1. Data may take a little while to load, you'll see spinner till the server will fully process the data
 2. Refresh page to refresh the data
 3. If it is needed to parse the actual usd rate according to date on each table row, go [here](./flask-server/services/main.py)
-and follow the comments at `_get_converted_values` function
-
+and follow the comments at `_get_converted_values` function<br><br>
+__Interface__<br>
+  ![Interface](/Screenshot%20from%202022-07-22%2019-51-58.png)
 
 ## Logs are stored at /.log folder
 ## Setup
