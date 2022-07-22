@@ -5,6 +5,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 
 function Chart(props) {
   const chart = useRef(null);
+  // console.log(props.data, "Chart");
 
   const total_data = {
     usd: 0,
@@ -56,10 +57,10 @@ function Chart(props) {
     x.paddingTop = 50;
 
     for (let i = 0; i < props.data.length; i++) {
-      const date = props.data[i].date.split('/');
+      const date = props.data[i].date.split('.');
       // console.log(date)
       x.data.push({ 
-        date: new Date(date[2], date[0], date[1]),
+        date: new Date(date[2], parseInt(date[1])-1, date[0]),
         name: props.data[i].order_num,
         value: props.data[i].rub_price.toFixed(2)
     })
@@ -70,7 +71,7 @@ function Chart(props) {
         return (new Date(a.date)) - (new Date(b.date));
       });
     });
-    console.log(x.data)
+    // console.log(x.data)
     
     let title = x.titles.create();
     title.text = "Статистика поставок";

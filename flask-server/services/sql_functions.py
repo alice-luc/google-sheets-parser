@@ -17,7 +17,7 @@ def _get_or_create(session, model, **kwargs) -> None:
         session.commit()
 
 
-def manipulate_with_data_from_sheet_and_db(session, model, schema, query, data) -> None:
+def manipulate_with_data_from_sheet_and_db(session, model, schema, query, data: list) -> None:
     db_data = schema.dump(query)
     for el in db_data:
         db_obj = model.query.get(el.get('id'))

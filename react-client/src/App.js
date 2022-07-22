@@ -10,10 +10,15 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("/api/get-statistics")
-    .then((response) =>response.json())
+    fetch("/api")
+    .then((response) =>{
+      console.log(response);
+      return response.json()
+    })
     .then((data) => setData(data));
   }, [])
+  // console.log(data, 'App');
+
   return (
     <div>
       {!data.length ? (

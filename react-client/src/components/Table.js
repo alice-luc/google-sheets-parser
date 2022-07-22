@@ -26,6 +26,7 @@ function TableList(props) {
     }
 
   };
+  // console.log(props.data, 'Table');
   return (
     <div style={{ marginLeft: '10px', marginRight: '10px'}}>
   <Table className='table' style = {style.table}>

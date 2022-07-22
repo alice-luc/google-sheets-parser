@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:14.4-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - .postgres-data:/var/lib/postgresql/data
+    container_name: flask_postgres
+
+  flask_app:
+    build: ./flask-server
+    restart: always
+    ports:
+      - "80:5000"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    volumes:
+      - .log:/app/log
+    container_name: flask_app
+
+  react_app:
+    build: ./react-client
+    restart: always
+    ports:
+      - "3000:3000"
+    links:
+      - flask_app
+    depends_on:
+      - flask_app
+    volumes:
+      - .log:/usr/src/app/log
+    container_name: react_app

@@ -1,4 +1,7 @@
 .idea
 __*
-flask-server/data
-*.json
+.env
+.log
+.postgres-data
+flask-server/log
+#*.json
